@@ -21,9 +21,12 @@ class StudentOperation extends Controller
 
        $ids =  user_exam::where('user_id',$id)->pluck('exam_id')->toArray();
 
-        $data['portal_exams']=Oex_exam_master::select(['oex_exam_masters.*','oex_categories.name as cat_name'])
-        ->join('oex_categories','oex_exam_masters.category','=','oex_categories.id')
-        ->orderBy('id','desc')->where('oex_exam_masters.status','1')->whereIn('oex_exam_masters.id',$ids)->get()->toArray();
+        $data['portal_exams']=user_exam::select(['user_exams.*','users.name','oex_exam_masters.title','oex_exam_masters.category','oex_exam_masters.exam_date'])
+        ->join('users','users.id','=','user_exams.user_id')
+        ->join('oex_exam_masters','user_exams.exam_id','=','oex_exam_masters.id')->orderBy('user_exams.exam_id','desc')
+        ->where('user_exams.user_id',$id)
+        ->where('user_exams.std_status','1')
+        ->get()->toArray();
         return view('student.dashboard',$data);
     }
 
@@ -32,10 +35,12 @@ class StudentOperation extends Controller
     public function exam(){
 
 
+             $id = Auth::id();
+
             $student_info = user_exam::select(['user_exams.*','users.name','oex_exam_masters.title','oex_exam_masters.category','oex_exam_masters.exam_date'])
             ->join('users','users.id','=','user_exams.user_id')
             ->join('oex_exam_masters','user_exams.exam_id','=','oex_exam_masters.id')->orderBy('user_exams.exam_id','desc')
-            ->where('user_exams.user_id',Session::get('id'))
+            ->where('user_exams.user_id',$id)
             ->where('user_exams.std_status','1')
             ->get()->toArray();
             
@@ -151,7 +156,7 @@ class StudentOperation extends Controller
        $res->result_json=json_encode($result);
 
        echo $res->save();
-       return redirect(url('student/exam'));
+       return redirect(url('student/dashboard'));
     }
 
 

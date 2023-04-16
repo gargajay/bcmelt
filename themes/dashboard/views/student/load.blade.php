@@ -6,10 +6,17 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="card-body" style="border-bottom:2px solid #fff">
+                <div class="card-body" style="border-bottom: 4px solid #0b22a7">
                     <p>{{ $question->firstItem() + $key }}. {{ $q->questions}}</p>
                 </div>
             </div>
+          
+        </div>
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4"><b>
+                Student Name: {{Auth::User()->name}}
+            </b></div>
         </div>
 
         <div class="row" >

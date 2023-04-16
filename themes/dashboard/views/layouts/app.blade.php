@@ -114,12 +114,12 @@
               <p> Manage Students</p>
           </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="{{ url('admin/add_questions')}}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>questions</p>
         </a>
-      </li>
+      </li> --}}
         <li class="nav-item">
           <a href="{{ url('admin/logout')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
