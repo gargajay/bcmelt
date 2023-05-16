@@ -42,7 +42,8 @@
 
 .donate-now input[type="radio"]:checked+label,
 .Checked+label {
-  background: yellow;
+  background: red;
+  pointer-events: none;
 }
 
 .donate-now label {
@@ -114,7 +115,7 @@ nav span{
                 <!-- /.card-body -->
               </div> --}}
               <!-- /.card -->
-              <div class="card1 mt-4"  style="background:#26b5e3"  >
+              <div class="card1 "  style="background:#26b5e3"  >
                 <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                   <i class="fas fa-expand-arrows-alt"></i>
                 </a>
@@ -195,26 +196,25 @@ nav span{
 
       
       $(document).ready(function(){
+        $(".label-0").text('A');
+        $(".label-1").text('B');
+        $(".label-2").text('C');
+        $(".label-3").text('D');
+
         var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
         $(".corrt").text(totalCorrect);
 
 
         $("#myCheck").click(function(e)
         {
-          e.preventDefault();
+          //alert(1);
           const qusans = JSON.parse(localStorage.getItem('queans')) || [];
           $("#queans").val(qusans);
           localStorage.setItem("ques",JSON.stringify([]));
           localStorage.setItem("queans",JSON.stringify([]));
- localStorage.setItem("coque",JSON.stringify([]));
-
-localStorage.setItem("tcorrect",0);
-
-
-
+          localStorage.setItem("coque",JSON.stringify([]));
+          localStorage.setItem("tcorrect",0);
           $("#frm").submit();
-          
-
         });
 
         const arr2 = JSON.parse(localStorage.getItem('ques')) || [];
@@ -222,14 +222,23 @@ localStorage.setItem("tcorrect",0);
         $.each(arr2, function (key, value) 
         {
           if(value!==null){
+           // alert(1);
             $("#"+value).attr('checked', true);
+            $("#"+value).prop('disabled', true);
+
 
           }
         });  
 
 
-        $("input[type='radio']").click(function(){
+        $("input[type='radio']").click(function(event){
             var radioValue = $(this).val();
+          //   if ($(this).is(':checked')) {
+          //   // The input is checked
+          //   alert("you have already answered for this question");
+          //   event.preventDefault();
+          //   return;
+          // } 
             var id = $(this).attr("id");
             var qid = $(this).attr("data-q");
             var eid = $(this).attr("data-exam");
@@ -238,101 +247,53 @@ localStorage.setItem("tcorrect",0);
 
             var cor = "#li-id-"+qid+"-"+eid+"-"+sid+"-"+correct;
             var cor2 = ".li-id-"+qid+"-"+eid+"-"+sid+"-"+correct;
-
             //alert(cor);
             if(radioValue){
-
-
-
               const arr = JSON.parse(localStorage.getItem('ques')) || [];
-              
-
                 arr[qid]=id;
-
                 localStorage.setItem("ques",JSON.stringify(arr))
-
-
                 const qusans = JSON.parse(localStorage.getItem('queans')) || [];
-
                 qusans[qid] = radioValue;
-
                 localStorage.setItem("queans",JSON.stringify(qusans))
-
-
-
-                        
                 const correctar = JSON.parse(localStorage.getItem('coque')) || [];
-
                 if(radioValue==correct){
                  if(correctar[qid]!==1){
                     var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
-
                   totalCorrect = parseInt(totalCorrect)+1;
-
                   $(".corrt").text(totalCorrect);
-
                   localStorage.setItem('tcorrect',totalCorrect);
-
                 }
-                }else{
-              //alert(correctar[qid]);
-                 if(correctar[qid]===1 || correctar[qid]!==""){
-                    var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
-		if(totalcorrect!==0)
-{
-  totalCorrect = parseInt(totalCorrect)-1;
-
-}
-
-                
-
-                  $(".corrt").text(totalCorrect);
-
-
-                  localStorage.setItem('tcorrect',totalCorrect);
-
-                }
+                }else
+                {
+                  if(correctar[qid]===1 || correctar[qid]!=="")
+                  {
+                      var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
+                      if(totalcorrect!==0)
+                      {
+                        totalCorrect = parseInt(totalCorrect)-1;
+                      }
+                      $(".corrt").text(totalCorrect);
+                      localStorage.setItem('tcorrect',totalCorrect);
+                  }
                 }
 
-                
                 correctar[qid] = 0;
-                  localStorage.setItem('coque',JSON.stringify(correctar))
-
-            
-
-
-
+                localStorage.setItem('coque',JSON.stringify(correctar))
 
               //alert(radioValue);
               
               if(radioValue==correct)
               {
-
-
-
-
                 const correctar = JSON.parse(localStorage.getItem('coque')) || [];
-
-
                 correctar[qid] = 1;
-
-                 localStorage.setItem('coque',JSON.stringify(correctar))
-
-                
-               
+                localStorage.setItem('coque',JSON.stringify(correctar));
                 $(".li-"+id).addClass("bg-success");
-
-                
               }else{
 
                 $(".li-"+id).addClass("bg-danger");
                 $(cor2).removeClass("bg-danger");
                 $(cor2).addClass("bg-success");
-
                 const correctar = JSON.parse(localStorage.getItem('coque')) || [];
-
-               
-
               }
 
             }else{

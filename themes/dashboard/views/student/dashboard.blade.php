@@ -79,7 +79,7 @@ use App\Models\Oex_exam_master;
                     if($exam['exam_joined']==0){
 
                   ?>
-                   <h5> <a style="color:#fff;" href="{{ url('student/join_exam/'.$exam['exam_id'])}}" class="btn  btn-sm">start</a></h5>
+                   <h5> <a style="color:#fff;" href="{{ url('student/join_exam/'.$exam['exam_id'])}}" class="btn link btn-sm"></a></h5>
                   
                   <?php
                       } else{
@@ -100,7 +100,7 @@ use App\Models\Oex_exam_master;
                           if($exam['exam_joined']==1){
                       ?>      
                             {{-- <a href="{{ url('student/view_result/'.$exam['exam_id'])}}" class="btn btn-info btn-sm">View Result</a> --}}
-                            <a href="{{ url('student/rejoin/'.$exam['exam_id'])}}" class="btn btn-info btn-sm">Rejoin</a>
+                            <a href="{{ url('student/rejoin/'.$exam['exam_id'])}}" class="btn btn-info btn-sm link"></a>
                       <?php      
                           }
                       ?>
@@ -140,4 +140,19 @@ use App\Models\Oex_exam_master;
 
 
   
+@endsection
+@section('script')
+<script>
+    $(document).ready(function(){
+      $('.small-box').click(function(e)
+        {
+          var val = $(this).find('.link').attr('href');   
+          window.location.href = val;      
+          e.preventDefault();
+          
+          
+
+        });
+    });
+</script>
 @endsection
