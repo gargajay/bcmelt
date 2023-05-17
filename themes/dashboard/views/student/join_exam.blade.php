@@ -213,7 +213,9 @@ nav span{
           localStorage.setItem("ques",JSON.stringify([]));
           localStorage.setItem("queans",JSON.stringify([]));
           localStorage.setItem("coque",JSON.stringify([]));
+          localStorage.setItem("correctans",JSON.stringify([]));
           localStorage.setItem("tcorrect",0);
+         
           $("#frm").submit();
         });
 
@@ -223,16 +225,40 @@ nav span{
         {
           if(value!==null){
            // alert(1);
+           var className = $("#"+value).attr('class');
+           //alert(className);
             $("#"+value).attr('checked', true);
-            $("#"+value).prop('disabled', true);
+            $("."+className).prop('disabled', true);
+
+
+          }
+        });  
+
+        const arr3 = JSON.parse(localStorage.getItem('correctans')) || [];
+
+        $.each(arr3, function (key, value) 
+        {
+          if(value!==null){
+           // alert(1);
+
+           var id = $("#"+value).attr("id");
+
+         
+            $(".li-"+id).addClass("bg-success");
+
 
 
           }
         });  
 
 
+
         $("input[type='radio']").click(function(event){
             var radioValue = $(this).val();
+            var className = $(this).attr('class');
+            $("."+className).prop('disabled', true);
+
+
           //   if ($(this).is(':checked')) {
           //   // The input is checked
           //   alert("you have already answered for this question");
@@ -257,8 +283,14 @@ nav span{
                 localStorage.setItem("queans",JSON.stringify(qusans))
                 const correctar = JSON.parse(localStorage.getItem('coque')) || [];
                 if(radioValue==correct){
+                  const CorrectAns = JSON.parse(localStorage.getItem('correctans')) || [];
+                  CorrectAns[qid]=id;
+                localStorage.setItem("correctans",JSON.stringify(CorrectAns));
+                  
+
                  if(correctar[qid]!==1){
                     var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
+                    
                   totalCorrect = parseInt(totalCorrect)+1;
                   $(".corrt").text(totalCorrect);
                   localStorage.setItem('tcorrect',totalCorrect);

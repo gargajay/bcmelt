@@ -41,25 +41,25 @@
 
 
                     @if($val==1)
-                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-1"><input type="radio" value="1" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-1" data-q="{{$q->id}}" data-exam="{{$exam_id}}" data-student="{{ auth()->user()->id }}"   data-correct="{{$q->ans}}">
+                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-1"><input type="radio" value="1" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-1" class="c-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}" data-q="{{$q->id}}" data-exam="{{$exam_id}}" data-student="{{ auth()->user()->id }}"   data-correct="{{$q->ans}}">
                         <label for="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-1" class="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-1  label-{{$key1}}">A</label>
 
                         {{ $options['eoption1']}}
                     </li>
                     @elseif($val==2)
-                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-2"><input type="radio" value="2" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-2" data-q="{{$q->id}}" data-exam="{{$exam_id}}" data-student="{{ auth()->user()->id }}"   data-correct="{{$q->ans}}"> 
+                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-2"><input type="radio" value="2" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-2" class="c-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}" data-q="{{$q->id}}" data-exam="{{$exam_id}}" data-student="{{ auth()->user()->id }}"   data-correct="{{$q->ans}}"> 
                         <label for="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-2" class="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-2 label-{{$key1}}">B</label>
                         {{ $options['eoption2']}}
 
                     </li>
                     @elseif($val==3)
-                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-3"><input type="radio" value="3" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-3" data-q="{{$q->id}}" data-exam="{{$exam_id}}"  data-student="{{ auth()->user()->id }}"  data-correct="{{$q->ans}}"> 
+                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-3"><input type="radio" value="3" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-3" class="c-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}" data-q="{{$q->id}}" data-exam="{{$exam_id}}"  data-student="{{ auth()->user()->id }}"  data-correct="{{$q->ans}}"> 
                         <label for="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-3" class="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-3 label-{{$key1}}">C</label>
                         {{ $options['eoption3']}}
 
                     </li>
                     @elseif($val==4)
-                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-4"><input type="radio" value="4" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-4" data-q="{{$q->id}}" data-exam="{{$exam_id}}" data-student="{{ auth()->user()->id }}"  data-correct="{{$q->ans}}"> 
+                    <li id="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-4"><input type="radio" value="4" name="ans{{$key+1}}" id="id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-4" class="c-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}" data-q="{{$q->id}}" data-exam="{{$exam_id}}" data-student="{{ auth()->user()->id }}"  data-correct="{{$q->ans}}"> 
                         <label for="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-4" class="li-id-{{$q->id}}-{{$exam_id}}-{{auth()->user()->id}}-4 label-{{$key1}}" >D</label>
                         {{ $options['eoption4']}}
 
