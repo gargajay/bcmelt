@@ -138,11 +138,17 @@ nav span{
 
                     <input type="hidden" name="index" value="{{ $key+1}}">
 
-                    @if($question->lastPage()==$question->currentPage())
+                    <!-- @if($question->lastPage()==$question->currentPage()) -->
+                    
+                    <!-- @endif -->
+
+                    <div class="text-left">
+                      <a  href="{{url('student/dashboard')}}" class="btn  "  style="margin: auto;background-color:#0B22A7;color:#fff">Home</a>
+                      </div>
+
                     <div class="text-center">
                       <button type="button" class="btn  " id="myCheck" style="margin: auto;background-color:#0B22A7;color:#fff">Submit</button>
                       </div>
-                    @endif
                    
                          
                     
@@ -275,6 +281,7 @@ nav span{
             var cor2 = ".li-id-"+qid+"-"+eid+"-"+sid+"-"+correct;
             //alert(cor);
             if(radioValue){
+
               const arr = JSON.parse(localStorage.getItem('ques')) || [];
                 arr[qid]=id;
                 localStorage.setItem("ques",JSON.stringify(arr))
@@ -297,6 +304,8 @@ nav span{
                 }
                 }else
                 {
+                  $(cor2).removeClass("bg-danger");
+                  $(cor2).addClass("bg-success");
                   if(correctar[qid]===1 || correctar[qid]!=="")
                   {
                       var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
@@ -307,12 +316,13 @@ nav span{
                       $(".corrt").text(totalCorrect);
                       localStorage.setItem('tcorrect',totalCorrect);
                   }
+
                 }
 
                 correctar[qid] = 0;
                 localStorage.setItem('coque',JSON.stringify(correctar))
 
-              //alert(radioValue);
+              // alert(correct);
               
               if(radioValue==correct)
               {
@@ -322,14 +332,15 @@ nav span{
                 $(".li-"+id).addClass("bg-success");
               }else{
 
+               // alert(cor2);
+
                 $(".li-"+id).addClass("bg-danger");
-                $(cor2).removeClass("bg-danger");
-                $(cor2).addClass("bg-success");
+              
                 const correctar = JSON.parse(localStorage.getItem('coque')) || [];
               }
 
             }else{
-
+alert('else');
             }
         });
     });

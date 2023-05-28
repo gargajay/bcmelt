@@ -85,7 +85,7 @@
                 </ul>
 
                 <div style="margin-top: 40px;margin-left:10% ">
-                <p><font>Question id: <b>{{ $question->firstItem() + $key }}</b></font> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;      <font>Total Question :<b >{{ $question->total() }}</b></font> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;     <font >Correct Answer:<b class="corrt">0</b></font></p>
+                <p>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;      <font>Total Question :<b >{{ $question->total() }}</b></font> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;     <font >Correct Answer:<b class="corrt">0</b></font></p>
                 </div>
             </div>
             <div class="col-sm-5 mt-4">
@@ -135,7 +135,7 @@
 
                 @if(isset($question))
    @if($question->currentPage() > 1)
-      <a href="{{ $question->previousPageUrl() }}" style="margin: auto;background-color:#0B22A7;color:#fff;float:left" class="btn ">Previous</a>
+      <!-- <a href="{{ $question->previousPageUrl() }}" style="margin: auto;background-color:#0B22A7;color:#fff;float:left" class="btn ">Previous</a> -->
    @endif
  
    @if($question->hasMorePages())
