@@ -18,6 +18,8 @@ use App\Models\Admin;
 use App\Models\Oex_result;
 use Maatwebsite\Excel\Facades\Excel;
 
+use DB;
+
 class AdminController extends Controller
 {
     // admin dashboard
@@ -202,7 +204,7 @@ class AdminController extends Controller
 
 
     //Manage students
-    public function manage_students($id){
+    public function manage_students2($id){
 
         $ids =  user_exam::where('user_id',$id)->pluck('exam_id')->toArray();
 
@@ -214,6 +216,32 @@ class AdminController extends Controller
         $data['student_id'] =   $id;  
         return view('admin.manage_students',$data);
     }
+
+    public function manage_students($id){
+        $ids = user_exam::where('user_id', $id)->pluck('exam_id')->toArray();
+    
+        $data['exams'] = Oex_exam_master::where('status', '1')
+            ->whereNotIn('id', $ids)
+            ->get()
+            ->toArray();
+    
+            $data['students'] = Oex_exam_master::select(['oex_exam_masters.*', 'user_exams.id as user_exam_id','user_exams.exam_id', 'oex_exam_masters.title as ex_name', 'oex_exam_masters.exam_date','user_exams.exam_joined','user_exams.std_status'])
+            ->leftJoin('user_exams', function ($join) use ($id) {
+                $join->on('oex_exam_masters.id', '=', 'user_exams.exam_id')
+                     ->where('user_exams.user_id', '=', $id);
+            })
+   
+    ->orderBy('user_exams.exam_id', 'desc')
+    ->get()
+    ->toArray();
+
+    // dd($data);
+    
+        $data['student_id'] = $id;  
+        return view('admin.manage_students', $data);
+    }
+    
+    
 
 
     public function add_new_students_exam(Request $request)
@@ -299,15 +327,24 @@ class AdminController extends Controller
 
 
     //Editing student status
-    public function student_status($id){
-        $std = user_exam::where('id',$id)->get()->first();
+    public function student_status($id,$sid){
+        $std = user_exam::where('exam_id',$id)->where('user_id',$sid)->get()->first();
+
+        if(empty($std)){
+            $std = new user_exam();
+            $std->user_id = $sid;
+            $std->exam_id = $id;
+            $std->std_status = 0;
+            $std->exam_joined = 0;
+            $std->save();
+        }
 
         if($std->std_status==1)
             $status=0;
         else
             $status=1;
         
-        $std1 = user_exam::where('id',$id)->get()->first();
+        $std1 = user_exam::where('id',$std->id)->get()->first();
         $std1->std_status=$status;
         $std1->update();
     }

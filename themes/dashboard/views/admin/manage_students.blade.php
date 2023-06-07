@@ -39,38 +39,34 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                {{-- <th>DOB</th> --}}
                                 <th>Exam</th>
                                 <th>Exam Date</th>
                                 <th>Result</th>
                                 <th>status</th>
-                                <th>Actions</th>
+                                <!-- <th>Actions</th> -->
                             </tr>
                         </thead>
                         <tbody>
                           @foreach ($students as $key=>$std)
                               <tr>
                                   <td>{{ $key+1}}</td>
-                                  <td>{{ $std['name']}}</td>
-                                  {{-- <td>{{ $std['dob']}}</td> --}}
                                   <td>{{ $std['ex_name']}}</td>
                                   <td>{{ $std['exam_date']}}</td>
                                   <td>
                                     <?php 
                                     if($std['exam_joined']==1){
                                     ?>
-                                          <a href="{{url('admin/admin_view_result/'.$std['id'])}}" class="btn btn-info btn-sm">View result</a>
+                                          <a href="{{url('admin/admin_view_result/'.$std['user_exam_id'])}}" class="btn btn-info btn-sm">View result</a>
                                     <?php    
                                     }
                                     ?>
 
 
                                   </td>
-                                  <td><input type="checkbox" class="student_status" data-id="{{ $std['id']}}" <?php if($std['std_status']==1){ echo "checked";} ?> name="status"></td>
+                                  <td><input type="checkbox" class="student_status" data-id="{{ $std['id']}}" data-stid="{{ $student_id}}" <?php if($std['std_status']==1){ echo "checked";} ?> name="status"></td>
                                   <td>
-                                      <a href="{{url('admin/edit_students/'.$std['id'])}}" class="btn btn-primary1">Edit</a>
-                                      <a href="{{url('admin/delete_students/'.$std['id']."/".$student_id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                      <!-- <a href="{{url('admin/edit_students/'.$std['user_exam_id'])}}" class="btn btn-primary1">Edit</a>
+                                      <a href="{{url('admin/delete_students/'.$std['user_exam_id']."/".$student_id)}}" class="btn btn-danger btn-sm">Delete</a> -->
                                   </td>
                               </tr>
                           @endforeach

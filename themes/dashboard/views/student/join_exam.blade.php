@@ -172,33 +172,53 @@ nav span{
 @endsection
 @section('script')
 
-{{-- <script type="text/javascript">
+<script type="text/javascript">
 
-  $(function() {
-      $('body').on('click', '.pagination a', function(e) {
-          e.preventDefault();
+$('body').on('click', '.pagination a', function(e) {
+  e.preventDefault();
+
+  var url = $(this).attr('href');
+
+ // Create an HTML anchor element
+var link = document.createElement('a');
+link.href = url;
+
+// Get the query parameter value
+var urlParams = new URLSearchParams(link.search);
+var paramValue = urlParams.get('page');
+
+
+  var currentPageRadioChecked = $(".input-"+paramValue).is(':checked');
+// alert(paramValue);
+  if (currentPageRadioChecked) {
+    // Current page radio box is checked
+    //alert(1);
+    console.log('Current page radio box is checked');
+  } else {
+
+    alert('Please choose answer to procced with next question');
+    return;
+    // Current page radio box is not checked
+    //console.log('Current page radio box is not checked');
+  }
+
   
-          $('#load a').css('color', '#dfecf6');
-          $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
+
+  window.location.href = url;
+});
+
+
+
+
+
+
+
   
-          var url = $(this).attr('href');  
-          getArticles(url);
-          window.history.pushState("", "", url);
-      });
-  
-      function getArticles(url) {
-          $.ajax({
-              url : url  
-          }).done(function (data) {
-              $('.qw').html(data);  
-          }).fail(function () {
-              alert('Articles could not be loaded.');
-          });
-      }
-  });
-  
-  </script> --}}
+  </script> 
     <script>
+
+
+
 
       
       $(document).ready(function(){
@@ -262,7 +282,11 @@ nav span{
         $("input[type='radio']").click(function(event){
             var radioValue = $(this).val();
             var className = $(this).attr('class');
-            $("."+className).prop('disabled', true);
+
+            var classNames = className.split(' ');
+            var firstClassName = classNames[0];
+
+            $("."+firstClassName).prop('disabled', true);
 
 
           //   if ($(this).is(':checked')) {
@@ -290,31 +314,37 @@ nav span{
                 localStorage.setItem("queans",JSON.stringify(qusans))
                 const correctar = JSON.parse(localStorage.getItem('coque')) || [];
                 if(radioValue==correct){
+
                   const CorrectAns = JSON.parse(localStorage.getItem('correctans')) || [];
                   CorrectAns[qid]=id;
                 localStorage.setItem("correctans",JSON.stringify(CorrectAns));
                   
 
                  if(correctar[qid]!==1){
-                    var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
-                    
-                  totalCorrect = parseInt(totalCorrect)+1;
-                  $(".corrt").text(totalCorrect);
-                  localStorage.setItem('tcorrect',totalCorrect);
-                }
-                }else
-                {
-                  $(cor2).removeClass("bg-danger");
-                  $(cor2).addClass("bg-success");
-                  if(correctar[qid]===1 || correctar[qid]!=="")
-                  {
-                      var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
-                      if(totalcorrect!==0)
+
+                  var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
+
+                      if(totalCorrect!==0)
                       {
                         totalCorrect = parseInt(totalCorrect)-1;
                       }
                       $(".corrt").text(totalCorrect);
                       localStorage.setItem('tcorrect',totalCorrect);
+                   
+                }
+                }else
+                {
+                  alert(cor2);
+                  $(cor2).removeClass("bg-danger");
+                  $(cor2).addClass("bg-success");
+
+                  if(correctar[qid]===1 || correctar[qid]!=="")
+                  {
+                    var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
+                    
+                    totalCorrect = parseInt(totalCorrect)+1;
+                    $(".corrt").text(totalCorrect);
+                    localStorage.setItem('tcorrect',totalCorrect);
                   }
 
                 }

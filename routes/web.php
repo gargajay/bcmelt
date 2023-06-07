@@ -43,7 +43,7 @@ Route::prefix('admin')->middleware('theme:dashboard')->name('admin.')->group(fun
             Route::get('/delete_exam/{id}',[AdminController::class,'delete_exam']);
             Route::get('/edit_exam/{id}',[AdminController::class,'edit_exam']);
             Route::get('/manage_students_exam/{id}',[AdminController::class,'manage_students']);
-            Route::get('/student_status/{id}',[AdminController::class,'student_status']);
+            Route::get('/student_status/{id}/{sid}',[AdminController::class,'student_status']);
             Route::get('/delete_students/{id}/{stu_id}',[AdminController::class,'delete_students']);
             Route::get('/add_questions',[AdminController::class,'add_questions']);
             Route::get('/question_status/{id}',[AdminController::class,'question_status']);

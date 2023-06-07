@@ -49,7 +49,8 @@ $(document).on('click','.exam_status',function(){
 
 $(document).on('click','.student_status',function(){
     var id=$(this).attr('data-id');
-    $.get(BASE_URL+'/admin/student_status/'+id,function(fb){
+    var sid=$(this).attr('data-stid');
+    $.get(BASE_URL+'/admin/student_status/'+id+'/'+sid,function(fb){
         alert("status successsfully changed");
     })
 })
