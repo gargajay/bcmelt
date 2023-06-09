@@ -207,20 +207,8 @@ var paramValue = urlParams.get('page');
   window.location.href = url;
 });
 
-
-
-
-
-
-
-  
   </script> 
     <script>
-
-
-
-
-      
       $(document).ready(function(){
         $(".label-0").text('A');
         $(".label-1").text('B');
@@ -334,7 +322,7 @@ var paramValue = urlParams.get('page');
                 }
                 }else
                 {
-                  alert(cor2);
+                  // alert(cor2);
                   $(cor2).removeClass("bg-danger");
                   $(cor2).addClass("bg-success");
 
@@ -370,7 +358,7 @@ var paramValue = urlParams.get('page');
               }
 
             }else{
-alert('else');
+// alert('else');
             }
         });
     });
