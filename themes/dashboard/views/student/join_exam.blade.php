@@ -310,14 +310,14 @@ var paramValue = urlParams.get('page');
 
                  if(correctar[qid]!==1){
 
-                  var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
+                  // var totalCorrect = JSON.parse(localStorage.getItem('tcorrect')) || 0;
 
-                      if(totalCorrect!==0)
-                      {
-                        totalCorrect = parseInt(totalCorrect)-1;
-                      }
-                      $(".corrt").text(totalCorrect);
-                      localStorage.setItem('tcorrect',totalCorrect);
+                  //     if(totalCorrect!==0)
+                  //     {
+                  //       totalCorrect = parseInt(totalCorrect)-1;
+                  //     }
+                  //     $(".corrt").text(totalCorrect);
+                  //     localStorage.setItem('tcorrect',totalCorrect);
                    
                 }
                 }else
