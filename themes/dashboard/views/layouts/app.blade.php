@@ -33,6 +33,12 @@
   <style>
     .small-box .link {
   cursor: pointer;
+
+ 
+}
+
+.content-wrapper {
+ margin-left: 170px !important;
 }
   </style>
 </head>
@@ -65,7 +71,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 175px !important;">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <span class="brand-text font-weight-light">Online Pratice</span>

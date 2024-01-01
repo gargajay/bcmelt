@@ -44,6 +44,7 @@
                                 <th>Lisence no</th>
                                 <th>Mobile</th>
                                 <th>password</th>
+                                <th>Notes</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -52,20 +53,20 @@
                                <tr>
                                    <td>{{ $key+1}}</td>
                                    <td>{{ $p['name']}}</td>
-                                   {{-- <td>{{ $p['email']}}</td> --}}
                                    <td>{{ $p['license_no']}}</td>
                                    <td>{{ $p['mobile_no']}}</td>
                                    <td>{{ $p['exam']}}</td>
+                                   <td>{{ $p['comment']}}</td>
                                    <td>
                                     
 
-                                    <a href="{{ url('admin/manage_students_exam/'.$p['id'])}}" class="btn btn-success btn-sm">Manage Exam</a>
+                                    <a href="{{ url('admin/manage_students_exam/'.$p['id'])}}" class="btn btn-success btn-sm mb-2">Exam</a></br>
 
-                                    <a href="{{url('admin/edit_students/'.$p['id'])}}" class="btn btn-primary">Edit</a>
+                                    <a href="{{url('admin/edit_students/'.$p['id'])}}" class="btn btn-primary btn-sm">Edit</a>
 
 
                                        
-                                       <a href="{{ url('admin/delete_registered_students/'.$p['id'])}}" class="btn btn-danger btn-sm">Delete</a>
+                                       <!-- <a href="{{ url('admin/delete_registered_students/'.$p['id'])}}" class="btn btn-danger btn-sm">Delete</a> -->
                                    </td>
                                </tr>
                            @endforeach

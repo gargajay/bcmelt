@@ -35,7 +35,7 @@ $(document).on('click','.apply_exam',function(){
 $(document).on('click','.category_status',function(){
     var id=$(this).attr('data-id');
     $.get(BASE_URL+'/admin/category_status/'+id,function(fb){
-        alert("status successsfully changed");
+        // alert("status successsfully changed");
     })
 })
 
@@ -43,7 +43,7 @@ $(document).on('click','.category_status',function(){
 $(document).on('click','.exam_status',function(){
     var id=$(this).attr('data-id');
     $.get(BASE_URL+'/admin/exam_status/'+id,function(fb){
-        alert("status successsfully changed");
+        // alert("status successsfully changed");
     })
 })
 
@@ -51,21 +51,21 @@ $(document).on('click','.student_status',function(){
     var id=$(this).attr('data-id');
     var sid=$(this).attr('data-stid');
     $.get(BASE_URL+'/admin/student_status/'+id+'/'+sid,function(fb){
-        alert("status successsfully changed");
+        // alert("status successsfully changed");
     })
 })
 
 $(document).on('click','.portal_status',function(){
     var id=$(this).attr('data-id');
     $.get(BASE_URL+'/admin/portal_status/'+id,function(fb){
-        alert("status successsfully changed");
+        // alert("status successsfully changed");
     })
 })
 
 $(document).on('click','.question_status',function(){
     var id=$(this).attr('data-id');
     $.get(BASE_URL+'/admin/question_status/'+id,function(fb){
-        alert("status successsfully changed");
+        // alert("status successsfully changed");
     })
 })
 

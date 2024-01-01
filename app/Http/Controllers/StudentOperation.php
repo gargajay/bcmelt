@@ -117,26 +117,7 @@ class StudentOperation extends Controller
         }
        }
       }
-       /// dd($data);
-        // for($i=1;$i<=$request->index;$i++){
-
-        //     if(isset($data['question'.$i])){
-        //             $q=Oex_question_master::where('id',$data['question'.$i])->get()->first();
-
-        //             if($q->ans==$data['ans'.$i]){
-        //                 $result[$data['question'.$i]]='YES';
-        //                 $yes_ans++;
-        //             }elseif($data['ans'.$i]==0){
-        //                 $result[$data['question'.$i]]='No';
-        //                 $no_ans++;
-        //             }else{
-        //                 $result[$data['question'.$i]]='wrong';
-        //                 $wrong_ans++;
-
-
-        //             }
-        //     }
-        // }
+     
     
        $std_info = user_exam::where('user_id',Session::get('id'))->where('exam_id',$request->exam_id)->get()->first();
        $std_info->exam_joined=1;
@@ -155,7 +136,7 @@ class StudentOperation extends Controller
        $res->wrong_ans=$wrong_ans;
        $res->result_json=json_encode($result);
 
-       echo $res->save();
+        $res->save();
        return redirect(url('student/dashboard'));
     }
 
