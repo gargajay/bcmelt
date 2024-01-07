@@ -63,7 +63,7 @@ use App\Models\Oex_exam_master;
         }
         ?>
         <div class="col-md-4 col-4">
-          <div class="small-box <?php echo $cls; ?>">
+          <div class="small-box <?php echo $cls; ?>" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="handleCardBoxClick(event,{{$key}})">
             <div class="inner">
               <h3>{{ $exam['title']}}</h3>
               <p>{{ $cat }}</p>
@@ -72,12 +72,12 @@ use App\Models\Oex_exam_master;
               if (strtotime($exam['exam_date']) >= strtotime(date('Y-m-d'))) {
                 if ($exam['exam_joined'] == 0) {
               ?>
-                  
 
-                  <h5> 
-                        <input type="text" id="questionNumber{{$key}}" placeholder="Question Number">
-                        <a style="color:#fff;" href="#" class="btn link btn-sm" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="appendQuestionNumber(this,{{$key}})">Join Exam</a>
-                    </h5>
+
+                  <h5>
+                    <input type="text" id="questionNumber{{$key}}" placeholder="Question Number" maxlength="3" oninput="handleInput(event, {{$key}})">
+                    <!-- <a style="color:#fff;" href="#" class="btn link btn-sm" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="handleClick(event,{{$key}})">Join Exam</a> -->
+                  </h5>
 
               <?php
                 }
@@ -88,12 +88,12 @@ use App\Models\Oex_exam_master;
                 <?php
                 if ($exam['exam_joined'] == 1) {
                 ?>
-               
 
-                  <h5> 
-                        <input type="text" id="questionNumber{{$key}}" placeholder="Question Number">
-                        <a style="color:#fff;" href="#" class="btn link btn-sm" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="appendQuestionNumber(this,{{$key}})">Join Exam</a>
-                    </h5><?php
+
+              <h5>
+                <input type="text" id="questionNumber{{$key}}" placeholder="Question Number" maxlength="3">
+                <!-- <a style="color:#fff;" href="#" class="btn link btn-sm" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="appendQuestionNumber(this,{{$key}})">Join Exam</a> -->
+              </h5><?php
                   }
                     ?>
             </p>
@@ -130,11 +130,30 @@ use App\Models\Oex_exam_master;
 @endsection
 @section('script')
 <script>
-    function appendQuestionNumber(element, key) {
-        var questionNumber = document.getElementById('questionNumber' + key).value;
-        var dataH = element.getAttribute('data-h');
-        window.location.href = dataH + questionNumber;
+  function appendQuestionNumber(element, key) {
+
+    var cardBox = event.currentTarget;
+    var questionNumber = document.getElementById('questionNumber' + key).value;
+    var dataH = cardBox.getAttribute('data-h');
+    window.location.href = dataH + questionNumber;
+  }
+
+  function handleCardBoxClick(event, key) {
+    // Check if the clicked element is an input field
+    if (event.target.tagName.toLowerCase() === 'input') {
+      // Clicked on the input field, do nothing here
+    } else {
+      // Clicked anywhere else within the card box, call the function for the small box
+      appendQuestionNumber(event, key);
     }
+  }
+
+  function handleInput(event, key) {
+    // Your input field logic here
+    console.log("Typed in the input field with ID: questionNumber" + key);
+  }
+
+  
 </script>
 <script>
   // $(document).ready(function() {
