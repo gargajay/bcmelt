@@ -4,16 +4,9 @@
     <div style="display: flex; border-bottom: 4px solid #0b22a7;">
         <div style="flex-grow: 1;">
             <p>{{ $question->firstItem() + $key }}. {{ $q->questions}}</p>
-        </div>
-        <div style="flex-shrink: 0; margin-left: auto;">
-            <b>
-                Student Name: {{ Auth::User()->name }}
-            </b>
-            <p class="text-danger" style="margin: 0;">(Phone use is not allowed, and photo capturing is banned)</p>
-            <p class="text-danger" style="margin: 0;">(ਫ਼ੋਨ ਦੀ ਵਰਤੋਂ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ, ਅਤੇ ਫੋਟੋ ਕੈਪਚਰ ਕਰਨ 'ਤੇ ਪਾਬੰਦੀ ਹੈ।)</p>
 
-            </p>
         </div>
+
     </div>
     <div class="row">
         <div class="col-sm-7 mt-4">
@@ -90,6 +83,15 @@
         </div>
         <div class="col-sm-5 mt-4">
             <div>
+                <div style="flex-shrink: 0; margin-left: auto;">
+                    <b>
+                        {{ Auth::User()->name }}
+                    </b>
+                    <p class="text-danger" style="margin: 0;">(Phone use is not allowed, and photo capturing is banned)</p>
+                    <p class="text-danger" style="margin: 0;">(ਫ਼ੋਨ ਦੀ ਵਰਤੋਂ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ, ਅਤੇ ਫੋਟੋ ਕੈਪਚਰ ਕਰਨ 'ਤੇ ਪਾਬੰਦੀ ਹੈ।)</p>
+
+                    </p>
+                </div>
                 @if(!empty($q->image_file))
                 <img src="{{$q->image_file}}" class="img-responsive mb-2" style="max-height:200px; max-width: 100%;
                     ">
