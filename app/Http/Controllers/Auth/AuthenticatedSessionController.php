@@ -35,15 +35,19 @@ class AuthenticatedSessionController extends Controller
        
         $user = User::where('email',$request->email)->get()->first();
         
-        if($user){
-            $request->session()->put('id',$user->id);
-        }
-
+       
         
         
         $request->authenticate();
         
         $request->session()->regenerate();
+
+        if($user){
+            $request->session()->put('id',$user->id);
+
+            $user->update(['remember_token' => $request->session()->getId()]);
+        }
+
         
         return redirect(RouteServiceProvider::HOME);
     }
