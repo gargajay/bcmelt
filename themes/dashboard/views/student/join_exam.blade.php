@@ -161,14 +161,9 @@
                     <!-- <a href="{{ $question->previousPageUrl() }}" style="background-color:#0B22A7;color:#fff;" class="btn">Previous</a> -->
                     @endif
                     @if(isset($question) && $question->hasMorePages())
-                    <a href="{{ $question->nextPageUrl() }}" style="background-color:#0B22A7;color:#fff;" class="btn ne">Next</a>
+                    <a href="{{ $question->nextPageUrl() }}" style="background-color:#0B22A7;color:#fff;" class="btn ne spclass">Next</a>
                     @endif
                   </div>
-
-
-
-
-
                 </div>
               </div>
             </div>
@@ -189,7 +184,7 @@
   @section('script')
 
   <script type="text/javascript">
-    $('body').on('click', '.pagination a', function(e) {
+    $('body').on('click', '.spclass', function(e) {
       e.preventDefault();
 
       var url = $(this).attr('href');
@@ -287,13 +282,6 @@
 
         $("." + firstClassName).prop('disabled', true);
 
-
-        //   if ($(this).is(':checked')) {
-        //   // The input is checked
-        //   alert("you have already answered for this question");
-        //   event.preventDefault();
-        //   return;
-        // } 
         var id = $(this).attr("id");
         var qid = $(this).attr("data-q");
         var eid = $(this).attr("data-exam");
