@@ -75,7 +75,7 @@ use App\Models\Oex_exam_master;
 
 
                   <h5>
-                    <input type="text" id="questionNumber{{$key}}" placeholder="Question Number" maxlength="3" oninput="handleInput(event, {{$key}})">
+                    <input type="text" id="questionNumber{{$key}}" placeholder="Question Number" maxlength="3" width="70px" oninput="handleInput(event, {{$key}})" style="width: 70px;">
                     <!-- <a style="color:#fff;" href="#" class="btn link btn-sm" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="handleClick(event,{{$key}})">Join Exam</a> -->
                   </h5>
 
@@ -91,7 +91,7 @@ use App\Models\Oex_exam_master;
 
 
               <h5>
-                <input type="text" id="questionNumber{{$key}}" placeholder="Question Number" maxlength="3">
+                <input type="text" id="questionNumber{{$key}}" placeholder="Q.No" maxlength="3"  oninput="handleInput(event, {{$key}})" style="width: 70px;">
                 <!-- <a style="color:#fff;" href="#" class="btn link btn-sm" data-h="{{ url('student/join_exam/'.$exam['exam_id'].'?page=') }}" onclick="appendQuestionNumber(this,{{$key}})">Join Exam</a> -->
               </h5><?php
                   }
