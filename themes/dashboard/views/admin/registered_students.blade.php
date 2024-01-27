@@ -121,6 +121,13 @@
                             <input type="text"  name="mobile_no" placeholder="Enter mobile number" class="form-control">
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="">Enter Password</label>
+                            {{ csrf_field()}}
+                            <input type="password" required="required" name="password" placeholder="Enter password" class="form-control">
+                        </div>
+                    </div>
                     <div class="col-md-12">
                           <div class="form-group">
                                   <label for="">Comments</label>
@@ -129,13 +136,7 @@
                               </div>
                     </div>
                    
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="">Enter Password</label>
-                            {{ csrf_field()}}
-                            <input type="password" required="required" name="password" placeholder="Enter password" class="form-control">
-                        </div>
-                    </div>
+                   
                     <div class="col-sm-12">
                         <div class="form-group">
                             <button class="btn btn-primary">Add</button>
